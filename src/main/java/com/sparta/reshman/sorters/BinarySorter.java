@@ -1,4 +1,5 @@
-package com.sparta.reshman.sorters.binaryTree;
+package com.sparta.reshman.sorters;
 
 public class BinarySorter {
+
 }
