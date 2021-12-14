@@ -3,6 +3,7 @@ package com.sparta.reshman.display;
 import com.sparta.reshman.enums.SorterEnums;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class DisplayManager {
 
@@ -12,8 +13,8 @@ public class DisplayManager {
         System.out.println("Sorting using " + SorterEnums.toString(sortingMethodName));
     }
 
-    public static void displaySort(int[] sortedArray) {
-        System.out.println(Arrays.toString(sortedArray));
+    public static void displaySort(List<Integer> sortedArray) {
+        System.out.println(sortedArray);
     }
 
     public static void displayTime(long timeTaken) {
