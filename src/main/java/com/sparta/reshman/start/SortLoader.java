@@ -5,6 +5,7 @@ import com.sparta.reshman.display.DisplayManager;
 import com.sparta.reshman.enums.SorterEnums;
 import com.sparta.reshman.sorters.Sorter;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class SortLoader {
@@ -42,7 +43,7 @@ public class SortLoader {
         assert sortingMethodName != null;
         Sorter sorter = SortFactory.getSorter(sortingMethodName);
         assert sorter != null;
-        int[] sortedArray = sorter.sort(generatedArray);
+        List<Integer> sortedArray = sorter.sort(generatedArray);
         DisplayManager.displaySort(sortedArray);
 
         // Prints the time taken for the sorter to sort the array

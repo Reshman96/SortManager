@@ -1,10 +1,13 @@
 package com.sparta.reshman.sorters;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySorter implements Sorter {
 
     @Override
-    public int[] sort(int[] generatedArray) {
-        return new int[0];
+    public List<Integer> sort(int[] generatedArray) {
+        return new ArrayList<>();
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.sparta.reshman.sorters;
 
+import java.util.List;
+
 public interface Sorter {
 
-    int[] sort(int[] generatedArray);
+    List<Integer> sort(int[] generatedArray);
 
     long timeTaken();
 }
