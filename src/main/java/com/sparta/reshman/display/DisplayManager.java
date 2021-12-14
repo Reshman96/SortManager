@@ -2,6 +2,8 @@ package com.sparta.reshman.display;
 
 import com.sparta.reshman.enums.SorterEnums;
 
+import java.util.Arrays;
+
 public class DisplayManager {
 
     /*
@@ -21,8 +23,12 @@ public class DisplayManager {
         System.out.println("Please enter the desired size of the array as a number: ");
     }
 
-    public static void sort(SorterEnums sortingMethodName) {
+    public static void displayPreSort(SorterEnums sortingMethodName) {
         System.out.println("Sorting using " + SorterEnums.toString(sortingMethodName));
+    }
+
+    public static void displaySort(int[] sortedArray) {
+        System.out.println(Arrays.toString(sortedArray));
     }
 
 }
