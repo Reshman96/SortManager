@@ -38,11 +38,19 @@ public class SortLoader {
         // Converts int variable to the selected sorter type
         SorterEnums sortingMethodName = SorterEnums.toMethodName(sortingMethodNumber);
 
-        // Generates the unsorted array
-        int[] generatedArray = ArrayGenerator.size(arraySize);
 
-        // Prints the sorter name being used
-        DisplayManager.sort(sortingMethodName);
+        // Generates the unsorted array
+        int[] generatedArray = ArrayGenerator.setSize(arraySize);
+
+
+        // Prints the sorter name being used and saves it as a variable
+        DisplayManager.displayPreSort(sortingMethodName);
+
+
+        // Prints array sorted using the selected sorter and the time taken
+//        Sorter sorter = SortFactory(sortingMethodName);
+//        int[] sortedArray = sorter.sort(generatedArray);
+//        DisplayManager.displaySort(sortedArray);
 
     }
 }
