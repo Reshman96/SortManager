@@ -8,6 +8,6 @@ public class ArrayGeneratorTest {
 
     @Test
     void sizeTest() {
-        Assertions.assertEquals(10,ArrayGenerator.size(10).length);
+        Assertions.assertEquals(10,ArrayGenerator.setSize(10).length);
     }
 }
