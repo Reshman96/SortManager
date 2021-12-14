@@ -13,19 +13,19 @@ public class SortLoader {
 
         Scanner scanner = new Scanner(System.in);
 
-        // Asks the user to select the type of sorter and saves it as an int variable
+        // User selects sorter
         DisplayManager.requestSorter();
         int sortingMethodNumber = scanner.nextInt();
         scanner.nextLine();
 
 
-        // Asks the user to select the size of the array and saves it as an int variable
+        // User selects array size
         DisplayManager.requestArraySize();
         int arraySize = scanner.nextInt();
         scanner.nextLine();
 
 
-        // Converts int variable to the selected sorter type
+        // Retrieves sorter type
         SorterEnums sortingMethodName = SorterEnums.toMethodName(sortingMethodNumber);
 
 
@@ -33,8 +33,9 @@ public class SortLoader {
         int[] generatedArray = ArrayGenerator.setSize(arraySize);
 
 
-        // Prints the sorter name being used and saves it as a variable
-        DisplayManager.displayPreSort(sortingMethodName);
+        // Prints the sorter name
+        DisplayManager.displayUnsortedArray(generatedArray);
+        DisplayManager.displaySelectedSorter(sortingMethodName);
 
 
         // Prints the array after sorting using the selected sorter
