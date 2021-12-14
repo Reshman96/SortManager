@@ -10,6 +10,36 @@ public class BinaryTreeImpl implements BinaryTree {
     private Node currentElement;
     private Set<Integer> set = new TreeSet<>();
 
+    public static class Node {
+        private final int numericValue;
+        private Node leftNode;
+        private Node rightNode;
+
+        public Node(int numericValue) {
+            this.numericValue = numericValue;
+        }
+
+        public int getNumericValue() {
+            return numericValue;
+        }
+
+        public Node getLeftNode() {
+            return leftNode;
+        }
+
+        public void setLeftNode(Node leftNode) {
+            this.leftNode = leftNode;
+        }
+
+        public Node getRightNode() {
+            return rightNode;
+        }
+
+        public void setRightNode(Node rightNode) {
+            this.rightNode = rightNode;
+        }
+    }
+
     public BinaryTreeImpl(Node root) {
         this.root = root;
         this.currentElement = root;
