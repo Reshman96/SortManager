@@ -5,30 +5,32 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 public class BinaryTreeImplTest {
     private BinaryTreeImpl tree;
 
     @BeforeEach
     public void setup() {
-        tree = new BinaryTreeImpl(new BinaryTreeImpl.Node(25));
-        tree.addElement(17);
-        tree.addElement(27);
-        tree.addElements(new int[]{43, 26, 14, 19});
+        tree = new BinaryTreeImpl(new BinaryTreeImpl.Node(50));
+        tree.addElement(30);
+        tree.addElement(70);
+        tree.addElements(new int[]{15, 35, 87, 62, 7, 31, 22});
     }
 
     @Test
     public void getRootElementTest() {
-        Assertions.assertEquals(25, tree.getRootElement());
+        Assertions.assertEquals(50, tree.getRootElement());
     }
 
     @Test
     public void getNumberOfElementsTest() {
-        Assertions.assertEquals(7, tree.getNumberOfElements());
+        Assertions.assertEquals(10, tree.getNumberOfElements());
     }
 
     @Test
     public void findRealElementTest() {
-        Assertions.assertTrue(tree.findElement(43));
+        Assertions.assertTrue(tree.findElement(70));
     }
 
     @Test
@@ -38,31 +40,42 @@ public class BinaryTreeImplTest {
 
     @Test
     public void getLeftChildTest() throws ChildNotFoundException {
-        Assertions.assertEquals(14, tree.getLeftChild(17));
+        Assertions.assertEquals(15, tree.getLeftChild(30));
     }
 
     @Test
     public void getNonExistingLeftChildTest() {
-        Assertions.assertThrows(ChildNotFoundException.class, () -> tree.getLeftChild(14));
+        Assertions.assertThrows(ChildNotFoundException.class, () -> tree.getLeftChild(7));
     }
 
     @Test
     public void getRightChildTest() throws ChildNotFoundException {
-        Assertions.assertEquals(43, tree.getRightChild(27));
+        Assertions.assertEquals(35, tree.getRightChild(30));
     }
 
     @Test
     public void getNonExistingRightChildTest() {
-        Assertions.assertThrows(ChildNotFoundException.class, () -> tree.getRightChild(43));
+        Assertions.assertThrows(ChildNotFoundException.class, () -> tree.getRightChild(87));
     }
 
     @Test
     void getSortedTreeAscTest() {
-        Assertions.assertArrayEquals(new int[]{14, 17, 19, 25, 26, 27, 43}, tree.getSortedTreeAsc());
+        Assertions.assertArrayEquals(new int[]{7, 15, 22, 30, 31, 35, 50, 62, 70, 87}, tree.getSortedTreeAsc());
     }
 
     @Test
     void getSortedTreeDescTest() {
-        Assertions.assertArrayEquals(new int[]{43, 27, 26, 25, 19, 17, 14}, tree.getSortedTreeDesc());
+        Assertions.assertArrayEquals(new int[]{87, 70, 62, 50, 35, 31, 30, 22, 15, 7}, tree.getSortedTreeDesc());
     }
+
+
+    @Test
+    void main() throws ChildNotFoundException {
+        System.out.println(Arrays.toString(tree.getSortedTreeAsc()));
+        System.out.println(tree.traverseLowestNumber(tree.getRootNode()).getNumericValue());
+        System.out.println(tree.getList());
+        System.out.println("*******************");
+        System.out.println(tree.traverseAndSort());
+    }
+
 }

@@ -7,11 +7,13 @@ import java.util.*;
 public class BinaryTreeImpl implements BinaryTree {
     private final Node root;
     private Node currentElement;
+    private List<Integer> list;
 
     public static class Node {
         private final int numericValue;
         private Node leftNode;
         private Node rightNode;
+        private Node parentNode;
 
         public Node(int numericValue) {
             this.numericValue = numericValue;
@@ -36,16 +38,29 @@ public class BinaryTreeImpl implements BinaryTree {
         public void setRightNode(Node rightNode) {
             this.rightNode = rightNode;
         }
+
+        public Node getParentNode() {
+            return parentNode;
+        }
+
+        public void setParentNode(Node parentNode) {
+            this.parentNode = parentNode;
+        }
     }
 
     public BinaryTreeImpl(Node root) {
         this.root = root;
         this.currentElement = root;
+        this.list = new ArrayList<>();
     }
 
     @Override
     public int getRootElement() {
         return this.root.getNumericValue();
+    }
+
+    public Node getRootNode() {
+        return root;
     }
 
     @Override
@@ -72,14 +87,18 @@ public class BinaryTreeImpl implements BinaryTree {
                 if (currentElement.getRightNode() != null) {
                     currentElement = currentElement.getRightNode();
                 } else {
-                    currentElement.setRightNode(new Node(element));
+                    Node newNode = new Node(element);
+                    currentElement.setRightNode(newNode);
+                    newNode.setParentNode(currentElement);
                 }
             }
             if (element < currentElement.getNumericValue()) {
                 if (currentElement.getLeftNode() != null) {
                     currentElement = currentElement.getLeftNode();
                 } else {
-                    currentElement.setLeftNode(new Node(element));
+                    Node newNode = new Node(element);
+                    currentElement.setLeftNode(newNode);
+                    newNode.setParentNode(currentElement);
                 }
             }
         }
@@ -156,6 +175,91 @@ public class BinaryTreeImpl implements BinaryTree {
         return result;
     }
 
+    public List<Integer> traverseAndSort() {
+        list.clear();
+        Node currentNode = root;
+        currentNode = traverseLowestNumber(currentNode);
+        while (!list.contains(largestNumber(getRootNode()))) {
+            if (currentNode.getRightNode() != null) {
+                if (hasUnprintedRightChild(currentNode)) {
+                    currentNode = printAndMoveIntoRightChild(currentNode);
+                    currentNode = traverseLowestNumber(currentNode);
+                    if (isUnprintedNode(currentNode)) {
+                        list.add(currentNode.getNumericValue());
+                        if (currentNode.getRightNode() != null) {
+                            if (hasUnprintedRightChild(currentNode)) {
+                                currentNode = printAndMoveIntoRightChild(currentNode);
+                                currentNode = traverseLowestNumber(currentNode);
+                            }
+                        }
+                    }
+                }
+            }
+            if (currentNode.getParentNode() != null) {
+                currentNode = currentNode.getParentNode();
+            }
+        }
+        return list;
+    }
+
+    private int largestNumber(Node currentElement) {
+        while (hasRightChild(currentElement)) {
+            currentElement = loadRightChild(currentElement);
+        }
+        return currentElement.getNumericValue();
+    }
+
+    private Node printAndMoveIntoRightChild(Node currentNode) {
+        if (!list.contains(currentNode.getNumericValue())) {
+            list.add(currentNode.getNumericValue());
+        }
+        currentNode = loadRightChild(currentNode);
+        return currentNode;
+    }
+
+    private boolean hasUnprintedRightChild(Node currentElement) {
+        return !list.contains(currentElement.getRightNode().getNumericValue());
+    }
+
+    private boolean isUnprintedNode(Node currentElement) {
+        return !list.contains(currentElement.getNumericValue());
+    }
+
+
+    public Node traverseLowestNumber(Node currentElement) {
+        while (hasLeftChild(currentElement)) {
+            currentElement = loadLeftChild(currentElement);
+        }
+        list.add(currentElement.getNumericValue());
+        if (hasRightChild(currentElement)) {
+            currentElement = loadRightChild(currentElement);
+            traverseLowestNumber(currentElement);
+        }
+        if (currentElement.getParentNode() != null) {
+            return currentElement.getParentNode();
+        } else {
+            return null;
+        }
+    }
+
+
+    private boolean hasLeftChild(Node currentElement) {
+        return (currentElement.getLeftNode() != null);
+    }
+
+    private Node loadLeftChild(Node currentElement) {
+        return currentElement.getLeftNode();
+    }
+
+    private boolean hasRightChild(Node currentElement) {
+        return (currentElement.getRightNode() != null);
+    }
+
+    private Node loadRightChild(Node currentElement) {
+        return currentElement.getRightNode();
+    }
+
+
     // Used to traverse down the left side of the tree to group all values into a list
     private List<Integer> traverseLeftChild(List<Integer> list, Node node) {
         if (node.getLeftNode() != null) {
@@ -184,5 +288,9 @@ public class BinaryTreeImpl implements BinaryTree {
             result[i] = ascendedSort[ascendedSort.length - i - 1];
         }
         return result;
+    }
+
+    public List<Integer> getList() {
+        return list;
     }
 }
