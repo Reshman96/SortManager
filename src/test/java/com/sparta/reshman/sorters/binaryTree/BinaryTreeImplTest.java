@@ -63,17 +63,11 @@ public class BinaryTreeImplTest {
         Assertions.assertArrayEquals(new int[]{7, 15, 22, 30, 31, 35, 50, 62, 70, 87}, tree.getSortedTreeAsc());
     }
 
-    @Test
-    void getSortedTreeDescTest() {
-        Assertions.assertArrayEquals(new int[]{87, 70, 62, 50, 35, 31, 30, 22, 15, 7}, tree.getSortedTreeDesc());
-    }
-
 
     @Test
-    void main() throws ChildNotFoundException {
+    void main() {
         System.out.println(Arrays.toString(tree.getSortedTreeAsc()));
         System.out.println(tree.traverseLowestNumber(tree.getRootNode()).getNumericValue());
-        System.out.println(tree.getList());
         System.out.println("*******************");
         System.out.println(tree.traverseAndSort());
     }

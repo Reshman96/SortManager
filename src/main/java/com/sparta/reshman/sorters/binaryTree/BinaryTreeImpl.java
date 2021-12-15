@@ -175,31 +175,36 @@ public class BinaryTreeImpl implements BinaryTree {
         return result;
     }
 
+    @Override
+    public int[] getSortedTreeDesc() {
+        return new int[0];
+    }
+
     public List<Integer> traverseAndSort() {
         list.clear();
         Node currentNode = root;
         currentNode = traverseLowestNumber(currentNode);
+        printNode(currentNode);
         while (!list.contains(largestNumber(getRootNode()))) {
-            if (currentNode.getRightNode() != null) {
-                if (hasUnprintedRightChild(currentNode)) {
-                    currentNode = printAndMoveIntoRightChild(currentNode);
-                    currentNode = traverseLowestNumber(currentNode);
-                    if (isUnprintedNode(currentNode)) {
-                        list.add(currentNode.getNumericValue());
-                        if (currentNode.getRightNode() != null) {
-                            if (hasUnprintedRightChild(currentNode)) {
-                                currentNode = printAndMoveIntoRightChild(currentNode);
-                                currentNode = traverseLowestNumber(currentNode);
-                            }
-                        }
-                    }
-                }
+
+            while (currentNode.getRightNode() != null && hasUnprintedRightChild(currentNode)) {
+                printNode(currentNode);
+                currentNode = moveIntoRightChild(currentNode);
+                currentNode = traverseLowestNumber(currentNode);
+                printNode(currentNode);
             }
-            if (currentNode.getParentNode() != null) {
-                currentNode = currentNode.getParentNode();
+            if (currentNode.getParentNode() != null && isPrintedNode(currentNode)) {
+                    currentNode = currentNode.getParentNode();
             }
+            printNode(currentNode);
         }
         return list;
+    }
+
+    private void printNode(Node currentElement) {
+        if (!list.contains(currentElement.getNumericValue())) {
+            list.add(currentElement.getNumericValue());
+        }
     }
 
     private int largestNumber(Node currentElement) {
@@ -209,10 +214,7 @@ public class BinaryTreeImpl implements BinaryTree {
         return currentElement.getNumericValue();
     }
 
-    private Node printAndMoveIntoRightChild(Node currentNode) {
-        if (!list.contains(currentNode.getNumericValue())) {
-            list.add(currentNode.getNumericValue());
-        }
+    private Node moveIntoRightChild(Node currentNode) {
         currentNode = loadRightChild(currentNode);
         return currentNode;
     }
@@ -221,25 +223,20 @@ public class BinaryTreeImpl implements BinaryTree {
         return !list.contains(currentElement.getRightNode().getNumericValue());
     }
 
-    private boolean isUnprintedNode(Node currentElement) {
-        return !list.contains(currentElement.getNumericValue());
+    private boolean hasUnprintedLeftChild(Node currentElement) {
+        return !list.contains(currentElement.getLeftNode().getNumericValue());
+    }
+
+    private boolean isPrintedNode(Node currentElement) {
+        return list.contains(currentElement.getNumericValue());
     }
 
 
     public Node traverseLowestNumber(Node currentElement) {
-        while (hasLeftChild(currentElement)) {
+        while (hasLeftChild(currentElement) && hasUnprintedLeftChild(currentElement)) {
             currentElement = loadLeftChild(currentElement);
         }
-        list.add(currentElement.getNumericValue());
-        if (hasRightChild(currentElement)) {
-            currentElement = loadRightChild(currentElement);
-            traverseLowestNumber(currentElement);
-        }
-        if (currentElement.getParentNode() != null) {
-            return currentElement.getParentNode();
-        } else {
-            return null;
-        }
+        return currentElement;
     }
 
 
@@ -277,20 +274,6 @@ public class BinaryTreeImpl implements BinaryTree {
             traverseLeftChild(list, node.getRightNode());
             traverseRightChild(list, node.getRightNode());
         }
-        return list;
-    }
-
-    @Override
-    public int[] getSortedTreeDesc() {
-        int[] ascendedSort = getSortedTreeAsc();
-        int[] result = new int[ascendedSort.length];
-        for (int i = 0; i < ascendedSort.length; i++) {
-            result[i] = ascendedSort[ascendedSort.length - i - 1];
-        }
-        return result;
-    }
-
-    public List<Integer> getList() {
         return list;
     }
 }
