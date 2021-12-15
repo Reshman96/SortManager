@@ -2,11 +2,13 @@ package com.sparta.reshman.sorters.binaryTree;
 
 import com.sparta.reshman.exceptions.ChildNotFoundException;
 
-import java.util.*;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class BinaryTreeImpl implements BinaryTree {
     private final Node root;
     private Node currentElement;
+    private Set<Integer> set = new TreeSet<>();
 
     public static class Node {
         private final int numericValue;
@@ -41,6 +43,7 @@ public class BinaryTreeImpl implements BinaryTree {
     public BinaryTreeImpl(Node root) {
         this.root = root;
         this.currentElement = root;
+        this.set.add(root.getNumericValue());
     }
 
     @Override
@@ -66,6 +69,7 @@ public class BinaryTreeImpl implements BinaryTree {
 
     @Override
     public void addElement(int element) {
+        set.add(element);
         currentElement = root;
         while (element != currentElement.getNumericValue()) {
             if (element > currentElement.getNumericValue()) {
@@ -143,45 +147,22 @@ public class BinaryTreeImpl implements BinaryTree {
 
     @Override
     public int[] getSortedTreeAsc() {
-        List<Integer> list = new ArrayList<>();
-        list.add(root.getNumericValue());
-        Node currentNode = root;
-        traverseLeftChild(list, currentNode);
-        traverseRightChild(list, currentNode);
-        int[] result = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            result[i] = list.get(i);
+        int[] result = new int[getNumberOfElements()];
+        int i = 0;
+        for (int num : set) {
+            result[i] = num;
+            i++;
         }
-        Arrays.sort(result);
         return result;
-    }
-
-    // Used to traverse down the left side of the tree to group all values into a list
-    private List<Integer> traverseLeftChild(List<Integer> list, Node node) {
-        if (node.getLeftNode() != null) {
-            list.add(node.getLeftNode().getNumericValue());
-            traverseLeftChild(list, node.getLeftNode());
-            traverseRightChild(list, node.getLeftNode());
-        }
-        return list;
-    }
-
-    // Used to traverse down the right side of the tree to group all values into a list
-    private List<Integer> traverseRightChild(List<Integer> list, Node node) {
-        if (node.getRightNode() != null) {
-            list.add(node.getRightNode().getNumericValue());
-            traverseLeftChild(list, node.getRightNode());
-            traverseRightChild(list, node.getRightNode());
-        }
-        return list;
     }
 
     @Override
     public int[] getSortedTreeDesc() {
-        int[] ascendedSort = getSortedTreeAsc();
-        int[] result = new int[ascendedSort.length];
-        for (int i = 0; i < ascendedSort.length; i++) {
-            result[i] = ascendedSort[ascendedSort.length - i - 1];
+        int[] result = new int[getNumberOfElements()];
+        int i = getNumberOfElements() - 1;
+        for (int num : set) {
+            result[i] = num;
+            i--;
         }
         return result;
     }
