@@ -1,28 +1,28 @@
 package com.sparta.reshman.sorters;
 
-import com.sparta.reshman.sorters.binaryTree.BinaryTreeImpl;
+import com.sparta.reshman.sorters.binaryTree.BinaryTree;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BinarySorter implements Sorter {
+    private static long time;
 
     @Override
     public List<Integer> sort(int[] generatedArray) {
-        BinaryTreeImpl binaryTree = new BinaryTreeImpl(new BinaryTreeImpl.Node(generatedArray[0]));
+        BinaryTree tree = new BinaryTree(new BinaryTree.Node(generatedArray[0]));
         for (int i = 1; i < generatedArray.length; i++) {
-            binaryTree.addElement(generatedArray[i]);
+            tree.addNode(generatedArray[i]);
         }
-        List<Integer> list = new ArrayList<>();
-        for (int i : binaryTree.getSortedTreeAsc()) {
-            list.add(i);
-        }
+        time = 0;
+        long start = System.nanoTime();
+        List<Integer> list = tree.traverseAndSort();
+        long end = System.nanoTime();
+        time = (end - start) / 1000;
         return list;
     }
 
     @Override
     public long timeTaken() {
-        return 0;
+        return time;
     }
-
 }
