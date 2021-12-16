@@ -1,6 +1,6 @@
 package com.sparta.reshman.sorters;
 
-import com.sparta.reshman.sorters.binaryTree.BinaryTreeImpl;
+import com.sparta.reshman.sorters.binaryTree.BinaryTree;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ public class BinarySorter implements Sorter {
 
     @Override
     public List<Integer> sort(int[] generatedArray) {
-        BinaryTreeImpl tree = new BinaryTreeImpl(new BinaryTreeImpl.Node(generatedArray[0]));
+        BinaryTree tree = new BinaryTree(new BinaryTree.Node(generatedArray[0]));
         for (int i = 1; i < generatedArray.length; i++) {
-            tree.addElement(generatedArray[i]);
+            tree.addNode(generatedArray[i]);
         }
         time = 0;
         long start = System.nanoTime();
