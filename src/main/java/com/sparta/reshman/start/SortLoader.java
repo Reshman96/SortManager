@@ -48,5 +48,12 @@ public class SortLoader {
 
         // Prints the time taken for the sorter to sort the array
         DisplayManager.displayTime(sorter.timeTaken());
+
+        // Asks the user if they'd like to perform another sort. If yes, replays the app, otherwise terminates
+        DisplayManager.displayStartOver();
+        String wantToReset = scanner.nextLine();
+        if (wantToReset.toLowerCase().contains("yes")) {
+            start();
+        }
     }
 }

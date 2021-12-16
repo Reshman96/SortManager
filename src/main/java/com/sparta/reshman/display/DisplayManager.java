@@ -18,7 +18,7 @@ public class DisplayManager {
     }
 
     public static void displayTime(long timeTaken) {
-        System.out.println("Time taken: " + timeTaken + " nanoseconds.");
+        System.out.println("Time taken: " + timeTaken + " nanoseconds.\n");
     }
 
     public static void displayUnsortedArray(int[] generatedArray) {
@@ -36,5 +36,9 @@ public class DisplayManager {
                 "3) InsertionSorter \n" +
                 "4) MergeSorter \n" +
                 "5) QuickSorter");
+    }
+
+    public static void displayStartOver() {
+        System.out.println("Would you like to perform another sort? (Yes / No)");
     }
 }
