@@ -42,7 +42,7 @@ public class MergeSorter implements Sorter {
 
     }
 
-    public void mergeArrays(int[] subArray, int[] tempArray1, int[] tempArray2, int arraySize1, int arraySize2, List<Integer> list) {
+    private void mergeArrays(int[] subArray, int[] tempArray1, int[] tempArray2, int arraySize1, int arraySize2, List<Integer> list) {
         int j = 0;
         int k = 0;
         for (int l = 0; l < subArray.length; l++) {
