@@ -1,6 +1,7 @@
 package com.sparta.reshman.tests;
 
 import com.sparta.reshman.array.ArrayGenerator;
+import com.sparta.reshman.exceptions.InvalidArraySizeException;
 import com.sparta.reshman.sorters.BinarySorter;
 import com.sparta.reshman.sorters.BubbleSorter;
 import com.sparta.reshman.sorters.MergeSorter;
@@ -21,7 +22,7 @@ public class PerformanceTester {
 
 
     @BeforeAll
-    static void classSetup() {
+    static void classSetup() throws InvalidArraySizeException {
         randomArray = ArrayGenerator.setSize(100);
     }
 
