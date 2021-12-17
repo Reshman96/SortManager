@@ -1,5 +1,7 @@
 package com.sparta.reshman.tests;
 
+import com.sparta.reshman.array.ArrayGenerator;
+import com.sparta.reshman.exceptions.InvalidArraySizeException;
 import com.sparta.reshman.sorters.BinarySorter;
 import com.sparta.reshman.sorters.BubbleSorter;
 import com.sparta.reshman.sorters.MergeSorter;
@@ -30,7 +32,7 @@ public class SortTester {
 
     @Test
     void singleNumberLengthTest() {
-//        Assertions.assertEquals();
+        Assertions.assertThrows(InvalidArraySizeException.class, () -> ArrayGenerator.setSize(1));
     }
 
     @Test
@@ -42,10 +44,5 @@ public class SortTester {
     void duplicateNumbersTest() {
         Assertions.assertEquals(Arrays.asList(35, 47, 53, 77), binary.sort(new int[] {53, 47, 53, 53, 77, 35}));
         Assertions.assertEquals(Arrays.asList(35, 47, 53, 77), merge.sort(new int[] {53, 47, 53, 53, 77, 35}));
-    }
-
-    @Test
-    void largeNumberTest() {
-//        Assertions.assertEquals(bubble.sort());
     }
 }
