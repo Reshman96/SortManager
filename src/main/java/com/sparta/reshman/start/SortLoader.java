@@ -3,6 +3,7 @@ package com.sparta.reshman.start;
 import com.sparta.reshman.array.ArrayGenerator;
 import com.sparta.reshman.display.DisplayManager;
 import com.sparta.reshman.enums.SorterEnums;
+import com.sparta.reshman.exceptions.InvalidArraySizeException;
 import com.sparta.reshman.sorters.Sorter;
 
 import java.util.List;
@@ -18,17 +19,23 @@ public class SortLoader {
         DisplayManager.requestSorter();
         int sortingMethodNumber = scanner.nextInt();
         scanner.nextLine();
+        SorterEnums sortingMethodName = SorterEnums.toMethodName(sortingMethodNumber);
 
         // User selects array size
         DisplayManager.requestArraySize();
-        int arraySize = scanner.nextInt();
-        scanner.nextLine();
-
-        // Retrieves sorter type
-        SorterEnums sortingMethodName = SorterEnums.toMethodName(sortingMethodNumber);
-
-        // Generates the unsorted array
-        int[] generatedArray = ArrayGenerator.setSize(arraySize);
+        int[] generatedArray = new int[1];
+        boolean flag = true;
+        while(flag) {
+            try {
+                int arraySize = scanner.nextInt();
+                scanner.nextLine();
+                generatedArray = ArrayGenerator.setSize(arraySize);
+                flag = false;
+            } catch (InvalidArraySizeException e) {
+                DisplayManager.getInvalidArraySizeExceptionMessage(e.getMessage());
+                DisplayManager.displayTryAgain();
+            }
+        }
 
         // Prints the sorter name
         DisplayManager.displayUnsortedArray(generatedArray);

@@ -37,4 +37,12 @@ public class DisplayManager {
     public static void displayStartOver() {
         System.out.println("Would you like to perform another sort? (Yes / No)");
     }
+
+    public static void displayTryAgain() {
+        System.out.println("Please try again:");
+    }
+
+    public static void getInvalidArraySizeExceptionMessage(String e) {
+        System.out.println(e);
+    }
 }
