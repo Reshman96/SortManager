@@ -10,13 +10,15 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-public class PerformanceTester {
-    private static int[] randomArray;
-    private final int[] unsortedArray = new int[randomArray.length];
     /*
     Take an array and run every single sort algorithm against it.
     And gives time taken in nanoseconds to see how fast they are.
      */
+
+public class PerformanceTester {
+    private static int[] randomArray;
+    private final int[] unsortedArray = new int[randomArray.length];
+
 
     @BeforeAll
     static void classSetup() {
