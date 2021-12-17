@@ -5,6 +5,7 @@
 SortManager is a project that I (Reshman) have coded to experiment with different sorting algorithms. 
 
 As of 17th December 2021 it contains 3 sorting algorithms (binary tree, bubble sort, and merge sort), however more sorting algorithms may be added in future updates.
+The project can be used to sort a randomly generated number of user defined array size via any of the currently existing sorting algorithms that are implemented. The project also has a performanceTest class to compare the speed sorting algorithms against one another.
 
 ## Latest updates
 * 17/12/2021 - Functioning merge sort algorithm implemented
