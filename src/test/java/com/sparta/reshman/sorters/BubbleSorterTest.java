@@ -16,7 +16,8 @@ public class BubbleSorterTest {
 
     @Test
     void BubbleSortOnAnArrayTest() {
-        Assertions.assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 7), bubbleSorter.sort(new int[]{5, 4, 7, 3, 1, 2, 6}));
+        int[] generatedArray = new int[]{5, 4, 7, 3, 1, 2, 6};
+        Assertions.assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 7), bubbleSorter.sort(generatedArray));
         bubbleSorter.timeTaken();
     }
 }
