@@ -21,4 +21,10 @@ public class MergeSorterTest {
         Assertions.assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8), mergeSorter.sort(new int[]{6, 5, 3, 1, 8, 7, 2, 4}));
 
     }
+
+    @Test
+    void main() {
+        System.out.println(mergeSorter.sort(new int[]{6, 5, 3, 1, 8, 7, 2, 4}));
+//        System.out.println(mergeSorter.sort(new int[]{6, 5, 3, 1}));
+    }
 }
