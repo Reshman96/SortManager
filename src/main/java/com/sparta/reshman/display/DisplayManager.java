@@ -33,9 +33,7 @@ public class DisplayManager {
         System.out.println("Please select the Sorter method by entering the option number below: ");
         System.out.println("1) BinarySorter \n" +
                 "2) BubbleSorter \n" +
-                "3) InsertionSorter \n" +
-                "4) MergeSorter \n" +
-                "5) QuickSorter");
+                "3) MergeSorter");
     }
 
     public static void displayStartOver() {

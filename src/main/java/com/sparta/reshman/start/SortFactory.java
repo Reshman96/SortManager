@@ -10,12 +10,8 @@ public class SortFactory {
                 return new BinarySorter();
             case BUBBLE:
                 return new BubbleSorter();
-            case INSERTION:
-                return new InsertionSorter();
             case MERGE:
                 return new MergeSorter();
-            case QUICK:
-                return new QuickSorter();
         }
         return null;
     }
