@@ -25,6 +25,5 @@ public class MergeSorterTest {
     @Test
     void main() {
         System.out.println(mergeSorter.sort(new int[]{6, 5, 3, 1, 8, 7, 2, 4}));
-//        System.out.println(mergeSorter.sort(new int[]{6, 5, 3, 1}));
     }
 }
