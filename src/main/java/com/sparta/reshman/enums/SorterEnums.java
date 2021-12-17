@@ -3,9 +3,7 @@ package com.sparta.reshman.enums;
 public enum SorterEnums {
     BINARY,
     BUBBLE,
-    INSERTION,
-    MERGE,
-    QUICK;
+    MERGE;
 
     public static String toString(SorterEnums methodName) {
         switch (methodName) {
@@ -13,12 +11,8 @@ public enum SorterEnums {
                 return "BinarySorter";
             case BUBBLE:
                 return "BubbleSorter";
-            case INSERTION:
-                return "InsertionSorter";
             case MERGE:
                 return "MergeSorter";
-            case QUICK:
-                return "QuickSorter";
         }
         return null;
     }
@@ -30,11 +24,7 @@ public enum SorterEnums {
             case 2:
                 return BUBBLE;
             case 3:
-                return INSERTION;
-            case 4:
                 return MERGE;
-            case 5:
-                return QUICK;
         }
         return null;
     }

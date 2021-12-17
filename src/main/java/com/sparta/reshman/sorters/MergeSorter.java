@@ -1,7 +1,6 @@
 package com.sparta.reshman.sorters;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MergeSorter implements Sorter {
@@ -13,12 +12,15 @@ public class MergeSorter implements Sorter {
         arraySize = generatedArray.length;
         List<Integer> list = new ArrayList<>();
         int arrayLength = generatedArray.length;
-        splitSubArray(generatedArray, arrayLength, list);
-
+        time = 0;
+        long start = System.nanoTime();
+        splitAndSort(generatedArray, arrayLength, list);
+        long end = System.nanoTime();
+        time = (end - start) / 1000;
         return list;
     }
 
-    private void splitSubArray(int[] subArray, int arrayLength, List<Integer> list) {
+    private void splitAndSort(int[] subArray, int arrayLength, List<Integer> list) {
         if (arrayLength < 2) {
             return;
         }
@@ -35,10 +37,10 @@ public class MergeSorter implements Sorter {
         }
 //        System.out.println("tempArray1 inside split = " + Arrays.toString(tempArray1));
 //        System.out.println("tempArray2 inside split = " + Arrays.toString(tempArray2));
-        splitSubArray(tempArray1, midPoint, list);
-        splitSubArray(tempArray2, arrayLength - midPoint, list);
+        splitAndSort(tempArray1, midPoint, list);
+        splitAndSort(tempArray2, arrayLength - midPoint, list);
 
-        System.out.println("about to perform mergeArrays with " + Arrays.toString(tempArray1) + " and " + Arrays.toString(tempArray2) + " currently list looks like " + list);
+//        System.out.println("about to perform mergeArrays with " + Arrays.toString(tempArray1) + " and " + Arrays.toString(tempArray2) + " currently list looks like " + list);
 
         mergeArrays(subArray, tempArray1, tempArray2, midPoint, arrayLength - midPoint, list);
 
@@ -57,7 +59,7 @@ public class MergeSorter implements Sorter {
                         subArray[l] = tempArray2[k];
                         k++;
                         if (k == arraySize2) {
-                            System.out.println("tempArray3 = " + Arrays.toString(subArray));
+//                            System.out.println("tempArray3 = " + Arrays.toString(subArray));
                             if (subArray.length == arraySize) {
                                 for (int i : subArray) {
                                     list.add(i);
@@ -75,7 +77,7 @@ public class MergeSorter implements Sorter {
                         subArray[l] = tempArray1[j];
                         j++;
                         if (j == arraySize1) {
-                            System.out.println("tempArray3 = " + Arrays.toString(subArray));
+//                            System.out.println("tempArray3 = " + Arrays.toString(subArray));
                             if (subArray.length == arraySize) {
                                 for (int i : subArray) {
                                     list.add(i);

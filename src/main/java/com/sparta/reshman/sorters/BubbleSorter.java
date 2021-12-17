@@ -45,5 +45,4 @@ public class BubbleSorter implements Sorter {
     public long timeTaken() {
         return time;
     }
-
 }
