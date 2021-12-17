@@ -19,34 +19,25 @@ public class SortLoader {
         int sortingMethodNumber = scanner.nextInt();
         scanner.nextLine();
 
-
         // User selects array size
         DisplayManager.requestArraySize();
         int arraySize = scanner.nextInt();
         scanner.nextLine();
 
-
         // Retrieves sorter type
         SorterEnums sortingMethodName = SorterEnums.toMethodName(sortingMethodNumber);
 
-
         // Generates the unsorted array
         int[] generatedArray = ArrayGenerator.setSize(arraySize);
-
 
         // Prints the sorter name
         DisplayManager.displayUnsortedArray(generatedArray);
         DisplayManager.displaySelectedSorter(sortingMethodName);
 
-
-        // Prints the array after sorting using the selected sorter
-        assert sortingMethodName != null;
+        // Prints the array and time taken after sorting using the selected sorter
         Sorter sorter = SortFactory.getSorter(sortingMethodName);
-        assert sorter != null;
         List<Integer> sortedArray = sorter.sort(generatedArray);
         DisplayManager.displaySort(sortedArray);
-
-        // Prints the time taken for the sorter to sort the array
         DisplayManager.displayTime(sorter.timeTaken());
 
         // Asks the user if they'd like to perform another sort. If yes, replays the app, otherwise terminates
