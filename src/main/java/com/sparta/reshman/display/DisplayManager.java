@@ -7,8 +7,6 @@ import java.util.List;
 
 public class DisplayManager {
 
-    //Only deals with printing/displaying
-
     public static void displaySelectedSorter(SorterEnums sortingMethodName) {
         System.out.println("Sorting using " + SorterEnums.toString(sortingMethodName));
     }
