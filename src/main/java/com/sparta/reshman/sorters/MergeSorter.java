@@ -35,18 +35,14 @@ public class MergeSorter implements Sorter {
                 tempArray2[i - midPoint] = subArray[i];
             }
         }
-//        System.out.println("tempArray1 inside split = " + Arrays.toString(tempArray1));
-//        System.out.println("tempArray2 inside split = " + Arrays.toString(tempArray2));
         splitAndSort(tempArray1, midPoint, list);
         splitAndSort(tempArray2, arrayLength - midPoint, list);
-
-//        System.out.println("about to perform mergeArrays with " + Arrays.toString(tempArray1) + " and " + Arrays.toString(tempArray2) + " currently list looks like " + list);
 
         mergeArrays(subArray, tempArray1, tempArray2, midPoint, arrayLength - midPoint, list);
 
     }
 
-    public void mergeArrays(int[] subArray, int[] tempArray1, int[] tempArray2, int arraySize1, int arraySize2, List<Integer> list) {
+    private void mergeArrays(int[] subArray, int[] tempArray1, int[] tempArray2, int arraySize1, int arraySize2, List<Integer> list) {
         int j = 0;
         int k = 0;
         for (int l = 0; l < subArray.length; l++) {
@@ -59,7 +55,6 @@ public class MergeSorter implements Sorter {
                         subArray[l] = tempArray2[k];
                         k++;
                         if (k == arraySize2) {
-//                            System.out.println("tempArray3 = " + Arrays.toString(subArray));
                             if (subArray.length == arraySize) {
                                 for (int i : subArray) {
                                     list.add(i);
@@ -77,7 +72,6 @@ public class MergeSorter implements Sorter {
                         subArray[l] = tempArray1[j];
                         j++;
                         if (j == arraySize1) {
-//                            System.out.println("tempArray3 = " + Arrays.toString(subArray));
                             if (subArray.length == arraySize) {
                                 for (int i : subArray) {
                                     list.add(i);
@@ -87,7 +81,6 @@ public class MergeSorter implements Sorter {
                     }
                 }
             }
-//            System.out.println("when returning result list is " + list);
         }
     }
 
